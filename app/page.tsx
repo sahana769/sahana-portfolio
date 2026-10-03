@@ -424,7 +424,7 @@ export default function Home() {
       {/* ================= ABOUT ================= */}
       <section
         id="about"
-        className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10"
+        className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 lg:py-20 lg:px-10"
       >
 
         <div className="grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
@@ -649,183 +649,65 @@ export default function Home() {
 
       </section>
 
-      {/* ================= PROJECTS PLACEHOLDER ================= */}
       {/* ================= FEATURED PROJECTS ================= */}
-{/* ================= FEATURED PROJECTS ================= */}
 <section
   id="projects"
-  className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10"
+  className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 lg:py-20 lg:px-10"
 >
-
   {/* SECTION HEADER */}
-  <div className="mb-16">
-
+  <div className="mb-14">
     <div className="mb-5 flex items-center gap-3">
-
       <span className="h-px w-10 bg-purple-400" />
 
       <span className="text-xs font-medium tracking-[0.3em] text-purple-300 uppercase">
-        Featured Projects
+        Selected Work
       </span>
-
     </div>
 
-
-    <h2 className="max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-
-      Selected work where{" "}
-
+    <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+      Projects that turn{" "}
       <span className="bg-gradient-to-r from-purple-300 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent">
-        AI meets software.
+        ideas into systems.
       </span>
-
     </h2>
 
-
     <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-500">
-      A selection of projects focused on artificial intelligence,
-      machine learning, data analysis and intelligent software systems.
+      A selection of AI, machine learning and software engineering projects
+      I've built to solve practical problems.
     </p>
-
   </div>
 
-
   {/* ================= PROJECT 01 ================= */}
-  <div className="project-card group relative mb-8 overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
-
-    {/* PROJECT VISUAL */}
-    <div className="relative h-[300px] overflow-hidden border-b border-white/10 bg-gradient-to-br from-purple-950/40 via-black/40 to-blue-950/40">
-
-      {/* Decorative glow */}
-      <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-purple-600/20 blur-[100px] transition-all duration-700 group-hover:scale-125" />
-
-      <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-blue-600/20 blur-[100px]" />
-
-
-      {/* Fake Dashboard */}
-      <div className="absolute left-[6%] right-[6%] top-8 h-[230px] overflow-hidden rounded-2xl border border-white/10 bg-[#080812] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
-
-        {/* Browser bar */}
-        <div className="flex h-10 items-center gap-2 border-b border-white/10 px-4">
-
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-
-          <div className="ml-4 h-3 w-40 rounded-full bg-white/5" />
-
-        </div>
-
-
-        {/* Dashboard */}
-        <div className="grid grid-cols-[120px_1fr] gap-4 p-4">
-
-          {/* Sidebar */}
-          <div className="rounded-xl border border-white/5 bg-white/[0.02] p-3">
-
-            <div className="mb-5 h-5 w-16 rounded bg-purple-500/30" />
-
-            <div className="space-y-3">
-
-              <div className="h-2 rounded bg-white/10" />
-              <div className="h-2 rounded bg-purple-400/20" />
-              <div className="h-2 rounded bg-white/10" />
-              <div className="h-2 rounded bg-white/10" />
-
-            </div>
-
-          </div>
-
-
-          {/* Main */}
-          <div>
-
-            <div className="grid grid-cols-3 gap-3">
-
-              <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3">
-                <div className="h-2 w-12 rounded bg-white/10" />
-                <div className="mt-3 h-6 w-16 rounded bg-purple-500/30" />
-              </div>
-
-              <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3">
-                <div className="h-2 w-12 rounded bg-white/10" />
-                <div className="mt-3 h-6 w-16 rounded bg-blue-500/30" />
-              </div>
-
-              <div className="rounded-xl border border-white/5 bg-white/[0.03] p-3">
-                <div className="h-2 w-12 rounded bg-white/10" />
-                <div className="mt-3 h-6 w-16 rounded bg-emerald-500/30" />
-              </div>
-
-            </div>
-
-
-            {/* Chart */}
-            <div className="mt-4 flex h-24 items-end gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-4">
-
-              <div className="h-8 flex-1 rounded-t bg-purple-500/30" />
-              <div className="h-12 flex-1 rounded-t bg-purple-500/40" />
-              <div className="h-10 flex-1 rounded-t bg-blue-500/30" />
-              <div className="h-16 flex-1 rounded-t bg-purple-500/50" />
-              <div className="h-14 flex-1 rounded-t bg-blue-500/40" />
-              <div className="h-20 flex-1 rounded-t bg-purple-400/50" />
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* Project number */}
-      <div className="absolute right-7 top-6 text-xs text-zinc-600">
-        01
-      </div>
-
-    </div>
-
-
-    {/* PROJECT CONTENT */}
-    <div className="grid gap-8 p-8 lg:grid-cols-[1fr_auto] lg:p-10">
-
+  <div className="project-card group relative mb-6 overflow-hidden rounded-[2rem] border border-purple-400/15 bg-gradient-to-br from-purple-500/[0.08] via-white/[0.03] to-blue-500/[0.05] backdrop-blur-xl">
+    <div className="grid items-center gap-10 p-7 sm:p-10 lg:grid-cols-2 lg:p-12">
+      {/* LEFT */}
       <div>
-
-        <div className="mb-4 flex items-center gap-3">
-
-          <span className="text-xl">
-            🧪
+        <div className="mb-6 flex items-center gap-3">
+          <span className="rounded-full border border-purple-400/20 bg-purple-500/10 px-3 py-1 text-[10px] font-medium tracking-wider text-purple-300 uppercase">
+            Featured Project
           </span>
 
-          <span className="text-xs font-medium tracking-[0.2em] text-purple-300 uppercase">
-            AI · Healthcare
+          <span className="text-xs text-zinc-600">
+            01
           </span>
-
         </div>
 
-
-        <h3 className="text-3xl font-semibold text-white">
+        <h3 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           IntelliLab AI
         </h3>
 
-
-        <p className="mt-2 text-lg text-purple-200/80">
+        <p className="mt-2 text-sm font-medium text-purple-300">
           Clinical Laboratory Intelligence Platform
         </p>
 
-
-        <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-500">
-          An end-to-end clinical laboratory intelligence platform designed
-          to process laboratory reports and generate AI-powered explanations
-          using OCR, retrieval-augmented generation and modern backend
-          technologies.
+        <p className="mt-6 max-w-xl text-sm leading-7 text-zinc-400 sm:text-base">
+          An end-to-end clinical laboratory intelligence platform designed to
+          process laboratory reports and generate AI-powered explanations using
+          OCR, retrieval-augmented generation and modern backend technologies.
         </p>
 
-
-        {/* TECH STACK */}
+        {/* TECHNOLOGIES */}
         <div className="mt-7 flex flex-wrap gap-2">
-
           {[
             "Python",
             "FastAPI",
@@ -838,143 +720,87 @@ export default function Home() {
           ].map((tech) => (
             <span
               key={tech}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-zinc-400 transition-all duration-300 hover:border-purple-400/30 hover:bg-purple-500/10 hover:text-purple-300"
+              className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-zinc-400 transition-all duration-300 group-hover:border-purple-400/20 group-hover:text-purple-200"
             >
               {tech}
             </span>
           ))}
-
         </div>
 
+        {/* BUTTONS */}
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href="https://github.com/sahana769"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:bg-purple-100"
+          >
+            View Project
+            <span>→</span>
+          </a>
+
+          <a
+            href="https://github.com/sahana769"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-xs text-zinc-300 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:bg-purple-500/10"
+          >
+            GitHub
+            <span>↗</span>
+          </a>
+        </div>
       </div>
 
+      {/* RIGHT — REAL PROJECT IMAGE */}
+      <div className="relative">
+        <div className="project-preview relative overflow-hidden rounded-3xl border border-white/10 bg-[#080812] shadow-2xl">
+          <Image
+            src="/intellilab-ai.jpeg"
+            alt="IntelliLab AI project dashboard"
+            width={1200}
+            height={800}
+            className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+        </div>
 
-      {/* ACTIONS */}
-      <div className="flex items-end gap-3 lg:flex-col lg:items-end lg:justify-end">
-
-        <a
-          href="https://github.com/sahana769"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-        >
-          View Project
-          <span className="transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
-        </a>
-
-
-        <a
-          href="https://github.com/sahana769"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm text-zinc-400 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:text-purple-300"
-        >
-          GitHub
-          <span className="transition-transform duration-300 group-hover:translate-x-1">
-            ↗
-          </span>
-        </a>
-
+        <div className="pointer-events-none absolute -inset-5 -z-10 rounded-[2rem] bg-purple-500/10 blur-3xl" />
       </div>
-
     </div>
-
   </div>
 
-
   {/* ================= PROJECTS 02 + 03 ================= */}
-  <div className="grid gap-8 lg:grid-cols-2">
-
-
-    {/* ================= PROJECT 02 ================= */}
-    <div className="project-card group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
-
-      {/* VISUAL */}
-      <div className="relative h-[250px] overflow-hidden border-b border-white/10 bg-gradient-to-br from-fuchsia-950/30 via-black/40 to-purple-950/30">
-
-        <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-fuchsia-500/15 blur-[100px]" />
-
-
-        {/* ATS UI */}
-        <div className="absolute left-[8%] right-[8%] top-8 h-[190px] rounded-2xl border border-white/10 bg-[#090912] p-5 shadow-2xl transition-transform duration-700 group-hover:scale-[1.03]">
-
-          <div className="flex items-center justify-between">
-
-            <div>
-
-              <div className="h-2 w-24 rounded bg-white/10" />
-
-              <div className="mt-2 h-2 w-16 rounded bg-purple-500/30" />
-
-            </div>
-
-            <div className="rounded-lg border border-purple-400/20 bg-purple-500/10 px-3 py-2 text-xs text-purple-300">
-              ATS MATCH
-            </div>
-
-          </div>
-
-
-          <div className="mt-7">
-
-            <div className="mb-2 flex justify-between text-[10px] text-zinc-600">
-              <span>Resume Compatibility</span>
-              <span>AI</span>
-            </div>
-
-            <div className="h-2 overflow-hidden rounded-full bg-white/5">
-
-              <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-purple-500 to-blue-400" />
-
-            </div>
-
-          </div>
-
-
-          <div className="mt-6 grid grid-cols-2 gap-3">
-
-            <div className="h-9 rounded-lg bg-emerald-500/10" />
-            <div className="h-9 rounded-lg bg-purple-500/10" />
-
-          </div>
-
-        </div>
-
-
-        <div className="absolute right-6 top-5 text-xs text-zinc-600">
+  <div className="grid gap-6 md:grid-cols-2">
+    {/* PROJECT 02 */}
+    <div className="project-card group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+      {/* REAL PROJECT IMAGE */}
+      <div className="relative h-56 overflow-hidden border-b border-white/5 bg-gradient-to-br from-blue-500/[0.08] via-purple-500/[0.04] to-transparent p-5">
+        <span className="absolute right-5 top-5 z-10 text-xs text-zinc-600">
           02
-        </div>
+        </span>
 
+        <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-[#090912] shadow-2xl transition-transform duration-700 group-hover:scale-[1.03]">
+          <Image
+            src="/skill-matcher.jpeg"
+            alt="AI Resume Analyzer project"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
       </div>
 
+      <div className="flex flex-1 flex-col p-7">
+        <p className="text-[10px] font-medium tracking-[0.25em] text-blue-300 uppercase">
+          RAG · ATS · GenAI
+        </p>
 
-      {/* CONTENT */}
-      <div className="p-8">
-
-        <div className="mb-4 flex items-center gap-3">
-
-          <span className="text-xl">
-            📄
-          </span>
-
-          <span className="text-xs font-medium tracking-[0.2em] text-fuchsia-300 uppercase">
-            RAG · ATS · GenAI
-          </span>
-
-        </div>
-
-
-        <h3 className="text-2xl font-semibold text-white">
+        <h3 className="mt-3 text-2xl font-semibold text-white">
           AI Resume Analyzer
         </h3>
 
-
-        <p className="mt-2 text-base text-fuchsia-200/80">
+        <p className="mt-2 text-sm font-medium text-zinc-500">
           RAG-Based ATS & Skill-Gap Evaluation Tool
         </p>
-
 
         <p className="mt-5 text-sm leading-7 text-zinc-500">
           A RAG-based ATS application that compares resumes and job
@@ -982,146 +808,70 @@ export default function Home() {
           skill gaps and provide actionable recommendations.
         </p>
 
+        <div className="mt-auto pt-7">
+          <div className="flex flex-wrap gap-2">
+            {[
+              "Python",
+              "RAG",
+              "LangChain",
+              "FAISS",
+              "ChromaDB",
+              "Streamlit",
+            ].map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-white/10 px-3 py-1.5 text-[10px] text-zinc-500 transition-colors group-hover:border-blue-400/20 group-hover:text-blue-200"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-
-          {[
-            "Python",
-            "RAG",
-            "LangChain",
-            "FAISS",
-            "ChromaDB",
-            "Streamlit",
-          ].map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-zinc-400 transition-all duration-300 hover:border-fuchsia-400/30 hover:bg-fuchsia-500/10 hover:text-fuchsia-300"
+          <div className="mt-7">
+            <a
+              href="https://github.com/sahana769"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-white transition-colors hover:text-purple-300"
             >
-              {tech}
-            </span>
-          ))}
-
+              View on GitHub →
+            </a>
+          </div>
         </div>
-
-
-        <a
-          href="https://github.com/sahana769"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm text-zinc-300 transition-all duration-300 hover:-translate-y-1 hover:border-fuchsia-400/30 hover:text-fuchsia-300"
-        >
-          View on GitHub
-          <span className="transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
-        </a>
-
       </div>
-
     </div>
 
-
-    {/* ================= PROJECT 03 ================= */}
-    <div className="project-card group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
-
-      {/* VISUAL */}
-      <div className="relative h-[250px] overflow-hidden border-b border-white/10 bg-gradient-to-br from-blue-950/40 via-black/40 to-indigo-950/30">
-
-        <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-blue-500/15 blur-[100px]" />
-
-
-        {/* FORECAST UI */}
-        <div className="absolute left-[7%] right-[7%] top-8 h-[190px] rounded-2xl border border-white/10 bg-[#080912] p-5 shadow-2xl transition-transform duration-700 group-hover:scale-[1.03]">
-
-          <div className="flex items-center justify-between">
-
-            <div>
-
-              <div className="h-2 w-28 rounded bg-white/10" />
-
-              <div className="mt-2 h-2 w-20 rounded bg-blue-500/30" />
-
-            </div>
-
-            <div className="rounded-lg border border-blue-400/20 bg-blue-500/10 px-3 py-2 text-xs text-blue-300">
-              FORECAST
-            </div>
-
-          </div>
-
-
-          {/* Chart */}
-          <div className="relative mt-7 h-24 overflow-hidden">
-
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
-
-            <div className="absolute bottom-5 left-0 right-0 h-px bg-white/5" />
-
-            <div className="absolute bottom-10 left-0 right-0 h-px bg-white/5" />
-
-            {/* chart line */}
-            <svg
-              viewBox="0 0 500 100"
-              className="absolute inset-0 h-full w-full"
-              preserveAspectRatio="none"
-            >
-
-              <path
-                d="M0 78 C45 76 55 72 90 70 C125 67 135 52 170 55 C205 58 215 62 245 48 C275 35 285 50 320 40 C350 30 370 42 395 35 C425 27 450 30 500 12"
-                fill="none"
-                stroke="rgb(167 139 250)"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-
-              <path
-                d="M0 90 C55 88 80 86 120 83 C170 79 190 82 235 72 C280 64 320 73 365 61 C410 50 455 58 500 48"
-                fill="none"
-                stroke="rgb(59 130 246)"
-                strokeWidth="2"
-                strokeDasharray="8 10"
-                opacity="0.6"
-              />
-
-            </svg>
-
-          </div>
-
-        </div>
-
-
-        <div className="absolute right-6 top-5 text-xs text-zinc-600">
+    {/* PROJECT 03 */}
+    <div className="project-card group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+      {/* REAL PROJECT IMAGE */}
+      <div className="relative h-56 overflow-hidden border-b border-white/5 bg-gradient-to-br from-fuchsia-500/[0.07] via-purple-500/[0.04] to-transparent p-5">
+        <span className="absolute right-5 top-5 z-10 text-xs text-zinc-600">
           03
-        </div>
+        </span>
 
+        <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-[#090912] shadow-2xl transition-transform duration-700 group-hover:scale-[1.03]">
+          <Image
+            src="/revenue-predictor.jpeg"
+            alt="Corporate Revenue Forecasting project"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
       </div>
 
+      <div className="flex flex-1 flex-col p-7">
+        <p className="text-[10px] font-medium tracking-[0.25em] text-fuchsia-300 uppercase">
+          Machine Learning
+        </p>
 
-      {/* CONTENT */}
-      <div className="p-8">
-
-        <div className="mb-4 flex items-center gap-3">
-
-          <span className="text-xl">
-            📈
-          </span>
-
-          <span className="text-xs font-medium tracking-[0.2em] text-blue-300 uppercase">
-            Machine Learning
-          </span>
-
-        </div>
-
-
-        <h3 className="text-2xl font-semibold text-white">
+        <h3 className="mt-3 text-2xl font-semibold text-white">
           Corporate Revenue Forecasting
         </h3>
 
-
-        <p className="mt-2 text-base text-blue-200/80">
+        <p className="mt-2 text-sm font-medium text-zinc-500">
           Time-Series Forecasting
         </p>
-
 
         <p className="mt-5 text-sm leading-7 text-zinc-500">
           A machine learning forecasting project using Linear Regression,
@@ -1129,50 +879,43 @@ export default function Home() {
           exploratory data analysis and PCA.
         </p>
 
+        <div className="mt-auto pt-7">
+          <div className="flex flex-wrap gap-2">
+            {[
+              "Python",
+              "Linear Regression",
+              "Random Forest",
+              "XGBoost",
+              "PCA",
+            ].map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-white/10 px-3 py-1.5 text-[10px] text-zinc-500 transition-colors group-hover:border-fuchsia-400/20 group-hover:text-fuchsia-200"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-
-          {[
-            "Python",
-            "Linear Regression",
-            "Random Forest",
-            "XGBoost",
-            "PCA",
-          ].map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-zinc-400 transition-all duration-300 hover:border-blue-400/30 hover:bg-blue-500/10 hover:text-blue-300"
+          <div className="mt-7">
+            <a
+              href="https://github.com/sahana769"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-white transition-colors hover:text-purple-300"
             >
-              {tech}
-            </span>
-          ))}
-
+              View on GitHub →
+            </a>
+          </div>
         </div>
-
-
-        <a
-          href="https://github.com/sahana769"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm text-zinc-300 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:text-blue-300"
-        >
-          View on GitHub
-          <span className="transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
-        </a>
-
       </div>
-
     </div>
-
   </div>
-
 </section>
 {/* ================= SKILLS ================= */}
 <section
   id="skills"
-  className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10"
+  className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 lg:py-20 lg:px-10"
 >
   {/* SECTION HEADER */}
   <div className="mb-14">
@@ -1616,7 +1359,7 @@ export default function Home() {
 </section> 
   <section
     id="experience"
-    className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10"
+    className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 lg:py-20 lg:px-10"
   >
     {/* SECTION HEADER */}
     <div className="mx-auto mb-16 max-w-3xl text-center">
@@ -1936,7 +1679,7 @@ export default function Home() {
 
 
     {/* ================= EDUCATION ================= */}
-    <section id="education" className="mt-20 pt-8">
+    <section id="education" className="mt-12 pt-6">
 
       <div className="mb-10 flex items-center gap-3">
 
@@ -2085,7 +1828,7 @@ export default function Home() {
 {/* ================= CERTIFICATIONS ================= */}
 <section
   id="certifications"
-  className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10"
+  className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 lg:py-20 lg:px-10"
 >
 
   {/* SECTION HEADER */}
