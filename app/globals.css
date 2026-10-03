@@ -5,24 +5,21 @@
   --foreground: #171717;
 }
 
+:root[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+:root[data-theme="dark"] {
+  --background: #050510;
+  --foreground: #ededed;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 /* =========================================
    SAHANA PORTFOLIO
@@ -211,4 +208,121 @@ body {
   .skill-pill:hover {
     transform: none;
   }
+}
+/* =========================================
+   SAHANA PORTFOLIO - LIGHT MODE VISIBILITY
+========================================= */
+
+:root[data-theme="light"] body {
+  background: #f7f7fb;
+  color: #18181b;
+}
+
+/* Main dark backgrounds */
+:root[data-theme="light"] .bg-\[\#050510\] {
+  background: #f7f7fb !important;
+}
+
+/* Main text */
+:root[data-theme="light"] .text-white {
+  color: #18181b !important;
+}
+
+:root[data-theme="light"] .text-zinc-100 {
+  color: #27272a !important;
+}
+
+:root[data-theme="light"] .text-zinc-200 {
+  color: #3f3f46 !important;
+}
+
+:root[data-theme="light"] .text-zinc-300 {
+  color: #52525b !important;
+}
+
+:root[data-theme="light"] .text-zinc-400 {
+  color: #52525b !important;
+}
+
+:root[data-theme="light"] .text-zinc-500 {
+  color: #71717a !important;
+}
+
+:root[data-theme="light"] .text-zinc-600 {
+  color: #71717a !important;
+}
+
+:root[data-theme="light"] .text-zinc-700 {
+  color: #a1a1aa !important;
+}
+
+/* Glass cards */
+:root[data-theme="light"] .bg-white\/\[0\.02\],
+:root[data-theme="light"] .bg-white\/\[0\.03\],
+:root[data-theme="light"] .bg-white\/\[0\.04\],
+:root[data-theme="light"] .bg-white\/\[0\.05\] {
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Borders */
+:root[data-theme="light"] .border-white\/10,
+:root[data-theme="light"] .border-white\/15 {
+  border-color: rgba(24, 24, 27, 0.12) !important;
+}
+
+/* Navbar */
+:root[data-theme="light"] nav .bg-black\/60 {
+  background: rgba(255, 255, 255, 0.88) !important;
+}
+
+:root[data-theme="light"] nav .text-white {
+  color: #18181b !important;
+}
+
+/* Purple text remains visible */
+:root[data-theme="light"] .text-purple-200 {
+  color: #7e22ce !important;
+}
+
+:root[data-theme="light"] .text-purple-300 {
+  color: #7e22ce !important;
+}
+
+/* Blue text */
+:root[data-theme="light"] .text-blue-200,
+:root[data-theme="light"] .text-blue-300 {
+  color: #1d4ed8 !important;
+}
+
+/* Cyan text */
+:root[data-theme="light"] .text-cyan-200,
+:root[data-theme="light"] .text-cyan-300 {
+  color: #0e7490 !important;
+}
+
+/* Fuchsia text */
+:root[data-theme="light"] .text-fuchsia-200,
+:root[data-theme="light"] .text-fuchsia-300 {
+  color: #a21caf !important;
+}
+
+/* Emerald text */
+:root[data-theme="light"] .text-emerald-200,
+:root[data-theme="light"] .text-emerald-300 {
+  color: #047857 !important;
+}
+
+/* Muted text inside buttons/navigation */
+:root[data-theme="light"] button.text-zinc-400 {
+  color: #52525b !important;
+}
+
+/* Hover states */
+:root[data-theme="light"] .hover\:text-white:hover {
+  color: #18181b !important;
+}
+
+/* Links */
+:root[data-theme="light"] a.text-zinc-400:hover {
+  color: #7e22ce !important;
 }

@@ -1,8 +1,72 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+    const [theme, setTheme] = useState<"system" | "light" | "dark">("system");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("portfolio-theme") as
+      | "system"
+      | "light"
+      | "dark"
+      | null;
+
+    const initialTheme = savedTheme || "system";
+    setTheme(initialTheme);
+
+    const applyTheme = (selectedTheme: "system" | "light" | "dark") => {
+      const root = document.documentElement;
+
+      if (selectedTheme === "light") {
+        root.classList.remove("dark");
+        root.setAttribute("data-theme", "light");
+      } else if (selectedTheme === "dark") {
+        root.classList.add("dark");
+        root.setAttribute("data-theme", "dark");
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        root.classList.toggle("dark", prefersDark);
+        root.setAttribute(
+          "data-theme",
+          prefersDark ? "dark" : "light"
+        );
+      }
+    };
+
+    applyTheme(initialTheme);
+  }, []);
+
+  const changeTheme = (selectedTheme: "system" | "light" | "dark") => {
+    setTheme(selectedTheme);
+    localStorage.setItem("portfolio-theme", selectedTheme);
+
+    const root = document.documentElement;
+
+    if (selectedTheme === "light") {
+      root.classList.remove("dark");
+      root.setAttribute("data-theme", "light");
+    } else if (selectedTheme === "dark") {
+      root.classList.add("dark");
+      root.setAttribute("data-theme", "dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+
+      root.classList.toggle("dark", prefersDark);
+      root.setAttribute(
+        "data-theme",
+        prefersDark ? "dark" : "light"
+      );
+    }
+  };
   return (
-    <main className="min-h-screen overflow-hidden bg-[#050510] text-white">
+    <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
 
       {/* ================= BACKGROUND ================= */}
       <div className="pointer-events-none fixed inset-0 -z-0 overflow-hidden">
@@ -98,6 +162,54 @@ export default function Home() {
     </div>
 
 
+    {/* THEME SWITCHER */}
+    <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1 backdrop-blur-xl md:flex">
+
+      <button
+        type="button"
+        onClick={() => changeTheme("light")}
+        aria-label="Light mode"
+        title="Light mode"
+        className={`rounded-full px-2.5 py-1.5 text-sm transition-all duration-300 ${
+          theme === "light"
+            ? "bg-white text-black shadow-sm"
+            : "text-zinc-400 hover:text-white"
+        }`}
+      >
+        ☀
+      </button>
+
+      <button
+        type="button"
+        onClick={() => changeTheme("system")}
+        aria-label="System theme"
+        title="System theme"
+        className={`rounded-full px-2.5 py-1.5 text-sm transition-all duration-300 ${
+          theme === "system"
+            ? "bg-purple-500/20 text-purple-200"
+            : "text-zinc-400 hover:text-white"
+        }`}
+      >
+        ◐
+      </button>
+
+      <button
+        type="button"
+        onClick={() => changeTheme("dark")}
+        aria-label="Dark mode"
+        title="Dark mode"
+        className={`rounded-full px-2.5 py-1.5 text-sm transition-all duration-300 ${
+          theme === "dark"
+            ? "bg-purple-500/20 text-purple-200"
+            : "text-zinc-400 hover:text-white"
+        }`}
+      >
+        ☾
+      </button>
+
+    </div>
+
+
     {/* CTA */}
     <a
       href="#contact"
@@ -109,6 +221,29 @@ export default function Home() {
         →
       </span>
     </a>
+
+   <a
+  href="/Sahana_AI.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group inline-flex items-center justify-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-6 py-3 text-sm font-medium text-purple-200 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/40 hover:bg-purple-500/15 hover:shadow-lg hover:shadow-purple-500/10"
+>
+  View Resume
+  <span className="transition-transform duration-300 group-hover:translate-y-[-2px]">
+    ↗
+  </span>
+</a>
+
+<a
+  href="/Sahana_AI.pdf"
+  download
+  className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:text-purple-300"
+>
+  Download Resume
+  <span className="transition-transform duration-300 group-hover:translate-y-1">
+    ↓
+  </span>
+</a>
 
   </div>
 
@@ -1479,148 +1614,260 @@ export default function Home() {
   </div>
 
 </section> 
-{/* ================= EXPERIENCE & EDUCATION ================= */}
-<section
-  id="experience"
-  className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10"
->
-
-  {/* SECTION HEADER */}
-  <div className="mb-16">
-
-    <div className="mb-5 flex items-center gap-3">
-      <span className="h-px w-10 bg-purple-400" />
-
-      <span className="text-xs font-medium tracking-[0.3em] text-purple-300 uppercase">
+  <section
+    id="experience"
+    className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10"
+  >
+    {/* SECTION HEADER */}
+    <div className="mx-auto mb-16 max-w-3xl text-center">
+      <p className="text-xs font-medium uppercase tracking-[0.3em] text-purple-300">
         Experience & Education
-      </span>
+      </p>
+
+      <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        The journey behind{" "}
+        <span className="bg-gradient-to-r from-purple-300 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent">
+          the work.
+        </span>
+      </h2>
+
+      <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-zinc-500">
+        A combination of professional experience, technical development and
+        academic foundations that shaped my journey into software engineering,
+        data and AI.
+      </p>
     </div>
 
-    <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-      The journey behind{" "}
-      <span className="bg-gradient-to-r from-purple-300 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent">
-        the work.
-      </span>
-    </h2>
+    {/* ================= EXPERIENCE ================= */}
+    <div className="space-y-8">
 
-    <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-500">
-      My professional experience and academic foundation in data,
-      artificial intelligence and software engineering.
-    </p>
+      {/* ================= DATA ANALYST INTERN ================= */}
+      <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/20 hover:shadow-2xl hover:shadow-blue-500/5 lg:p-9">
 
-  </div>
+        {/* Glow */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl transition-all duration-700 group-hover:scale-125 group-hover:bg-blue-500/15" />
 
+        <div className="relative grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
 
-  {/* ================= EXPERIENCE ================= */}
-  <div className="mb-20">
+          {/* LEFT */}
+          <div>
 
-    <div className="mb-8 flex items-center gap-3">
+            {/* Icon + Date */}
+            <div className="flex items-start justify-between gap-4">
 
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-purple-400/20 bg-purple-500/10 text-lg">
-        💼
-      </div>
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-2xl transition-all duration-500 group-hover:scale-110">
+                📊
+              </div>
 
-      <div>
-        <p className="text-xs tracking-[0.2em] text-purple-300 uppercase">
-          Professional Experience
-        </p>
+              <span className="rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1.5 text-[10px] font-medium text-blue-300">
+                Internship
+              </span>
 
-        <h3 className="mt-1 text-xl font-semibold text-white">
-          Where I've contributed
-        </h3>
-      </div>
-
-    </div>
-
-
-    {/* EXPERIENCE CARD */}
-    <div className="experience-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl sm:p-9">
-
-      {/* Glow */}
-      <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl transition-all duration-700 group-hover:bg-purple-500/20" />
-
-
-      <div className="relative grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
-
-        {/* LEFT */}
-        <div>
-
-          <div className="mb-5 flex items-center gap-3">
-
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/20 bg-purple-500/10 text-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              📊
             </div>
 
-            <span className="rounded-full border border-purple-400/20 bg-purple-500/10 px-3 py-1.5 text-[10px] font-medium tracking-wider text-purple-300 uppercase">
+            {/* Role */}
+            <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-blue-300">
+              Data Analyst Intern
+            </p>
+
+            <h3 className="mt-2 text-2xl font-semibold text-white">
+              Data Analyst
+            </h3>
+
+            {/* Company */}
+            <p className="mt-4 text-sm font-medium text-zinc-400">
+              Seventh Sense Talent Solutions
+            </p>
+
+            <p className="mt-1 text-xs text-zinc-600">
+              Bengaluru, India
+            </p>
+
+            <p className="mt-1 text-xs text-zinc-600">
               Nov 2024 — Feb 2025
-            </span>
+            </p>
+
+            {/* Skills */}
+            <div className="mt-7 flex flex-wrap gap-2">
+
+              <span className="skill-pill">
+                Python
+              </span>
+
+              <span className="skill-pill">
+                SQL
+              </span>
+
+              <span className="skill-pill">
+                Pandas
+              </span>
+
+              <span className="skill-pill">
+                Data Analysis
+              </span>
+
+              <span className="skill-pill">
+                Data Visualization
+              </span>
+
+              <span className="skill-pill">
+                BI
+              </span>
+
+              <span className="skill-pill">
+                Dashboards
+              </span>
+
+            </div>
 
           </div>
 
+          {/* RIGHT — RESPONSIBILITIES */}
+          <div className="space-y-5">
 
-          <h3 className="text-2xl font-semibold text-white sm:text-3xl">
-            Data Analyst Intern
-          </h3>
+            <div className="flex gap-4">
 
-          <p className="mt-2 text-sm font-medium text-purple-300">
-            Seventh Sense Talent Solutions
-          </p>
+              <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-blue-400/20 bg-blue-500/10 text-xs text-blue-300">
+                ✓
+              </div>
 
-          <p className="mt-1 text-xs text-zinc-600">
-            Bengaluru, India
-          </p>
+              <p className="text-sm leading-7 text-zinc-400">
+                Cleaned, validated and transformed customer and transaction
+                datasets using SQL, Python and advanced Excel to improve data
+                quality and reporting accuracy.
+              </p>
 
+            </div>
 
-          {/* EXPERIENCE STATS */}
-          {/* EXPERIENCE SKILLS */}
-<div className="mt-8 grid grid-cols-3 gap-3">
+            <div className="flex gap-4">
 
-  {/* PYTHON */}
-  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30 hover:bg-yellow-500/[0.05]">
-    <div className="text-lg font-semibold text-yellow-300">
-      Py
-    </div>
+              <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-purple-400/20 bg-purple-500/10 text-xs text-purple-300">
+                ✓
+              </div>
 
-    <p className="mt-1 text-[10px] text-zinc-500">
-      Python
-    </p>
-  </div>
+              <p className="text-sm leading-7 text-zinc-400">
+                Performed exploratory data analysis and statistical profiling to
+                identify customer behavior, churn patterns and operational trends.
+              </p>
 
-  {/* SQL */}
-  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:bg-purple-500/[0.05]">
-    <div className="text-lg font-semibold text-purple-300">
-      SQL
-    </div>
+            </div>
 
-    <p className="mt-1 text-[10px] text-zinc-500">
-      Data Analysis
-    </p>
-  </div>
+            <div className="flex gap-4">
 
-  {/* BI */}
-  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.05]">
-    <div className="text-lg font-semibold text-blue-300">
-      BI
-    </div>
+              <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-fuchsia-400/20 bg-fuchsia-500/10 text-xs text-fuchsia-300">
+                ✓
+              </div>
 
-    <p className="mt-1 text-[10px] text-zinc-500">
-      Dashboards
-    </p>
-  </div>
+              <p className="text-sm leading-7 text-zinc-400">
+                Built Excel macro-driven solutions and Python workflows to
+                automate repetitive extraction, transformation and validation tasks.
+              </p>
 
-</div>
+            </div>
+
+            <div className="flex gap-4">
+
+              <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-500/10 text-xs text-emerald-300">
+                ✓
+              </div>
+
+              <p className="text-sm leading-7 text-zinc-400">
+                Developed interactive Tableau dashboards and Power BI reports to
+                track KPIs, revenue trends and business performance for leadership.
+              </p>
+
+            </div>
+
+            <div className="flex gap-4">
+
+              <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-purple-400/20 bg-purple-500/10 text-xs text-purple-300">
+                ✓
+              </div>
+
+              <p className="text-sm leading-7 text-zinc-400">
+                Collaborated with Product, Engineering and Finance teams in an Agile
+                environment to gather requirements and deliver analytical outputs.
+              </p>
+
+            </div>
+
+          </div>
 
         </div>
 
-
-        {/* RIGHT — RESPONSIBILITIES */}
-        <div className="lg:border-l lg:border-white/10 lg:pl-10">
-
-          <p className="mb-6 text-xs font-medium tracking-[0.2em] text-zinc-600 uppercase">
-            Key Contributions
-          </p>
+      </div>
 
 
+      {/* ================= PYTHON DEVELOPER ================= */}
+      <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-fuchsia-400/20 hover:shadow-2xl hover:shadow-fuchsia-500/5 lg:p-9">
+
+        {/* Glow */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-fuchsia-500/10 blur-3xl transition-all duration-700 group-hover:scale-125 group-hover:bg-fuchsia-500/15" />
+
+        <div className="relative grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+
+          {/* LEFT */}
+          <div>
+
+            {/* Icon + Date */}
+            <div className="flex items-start justify-between gap-4">
+
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-fuchsia-400/20 bg-fuchsia-500/10 text-2xl transition-all duration-500 group-hover:scale-110">
+                🐍
+              </div>
+
+              <span className="rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-3 py-1.5 text-[10px] font-medium text-fuchsia-300">
+                Development
+              </span>
+
+            </div>
+
+            {/* Role */}
+            <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-fuchsia-300">
+              Python Developer
+            </p>
+
+            <h3 className="mt-2 text-2xl font-semibold text-white">
+              Python Developer
+            </h3>
+
+            {/* Company */}
+            <p className="mt-4 text-sm font-medium text-zinc-400">
+              Professional Experience
+            </p>
+
+            <p className="mt-1 text-xs text-zinc-600">
+              Bengaluru, India
+            </p>
+
+            {/* Skills */}
+            <div className="mt-7 flex flex-wrap gap-2">
+
+              <span className="skill-pill">
+                Python
+              </span>
+
+              <span className="skill-pill">
+                REST APIs
+              </span>
+
+              <span className="skill-pill">
+                OOP
+              </span>
+
+              <span className="skill-pill">
+                FastAPI
+              </span>
+
+              <span className="skill-pill">
+                Automation
+              </span>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT — RESPONSIBILITIES */}
           <div className="space-y-5">
 
             {/* ITEM 1 */}
@@ -1631,13 +1878,11 @@ export default function Home() {
               </div>
 
               <p className="text-sm leading-7 text-zinc-400">
-                Cleaned, validated and transformed customer and
-                transaction datasets using SQL, Python and advanced
-                Excel to improve data quality and reporting accuracy.
+                Developed Python-based applications and reusable software
+                components following structured programming practices.
               </p>
 
             </div>
-
 
             {/* ITEM 2 */}
             <div className="flex gap-4">
@@ -1647,13 +1892,11 @@ export default function Home() {
               </div>
 
               <p className="text-sm leading-7 text-zinc-400">
-                Performed exploratory data analysis and statistical
-                profiling to identify customer behavior, churn patterns
-                and operational trends.
+                Built and worked with REST APIs and backend services using
+                Python-based frameworks.
               </p>
 
             </div>
-
 
             {/* ITEM 3 */}
             <div className="flex gap-4">
@@ -1663,13 +1906,11 @@ export default function Home() {
               </div>
 
               <p className="text-sm leading-7 text-zinc-400">
-                Built Excel macro-driven solutions and Python workflows
-                to automate repetitive extraction, transformation and
-                validation tasks.
+                Applied Python programming and software engineering practices
+                to build maintainable and reusable solutions.
               </p>
 
             </div>
-
 
             {/* ITEM 4 */}
             <div className="flex gap-4">
@@ -1679,26 +1920,156 @@ export default function Home() {
               </div>
 
               <p className="text-sm leading-7 text-zinc-400">
-                Developed interactive Tableau dashboards and Power BI
-                reports to track KPIs, revenue trends and business
-                performance for leadership.
+                Contributed to improving existing workflows through automation,
+                testing and structured Python development.
               </p>
 
             </div>
 
+          </div>
 
-            {/* ITEM 5 */}
-            <div className="flex gap-4">
+        </div>
 
-              <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-orange-400/20 bg-orange-500/10 text-xs text-orange-300">
-                ✓
+      </div>
+
+    </div>
+
+
+    {/* ================= EDUCATION ================= */}
+    <section id="education" className="mt-20 pt-8">
+
+      <div className="mb-10 flex items-center gap-3">
+
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/10 text-lg">
+          🎓
+        </div>
+
+        <div>
+
+          <p className="text-xs uppercase tracking-[0.2em] text-blue-300">
+            Education
+          </p>
+
+          <h3 className="mt-1 text-xl font-semibold text-white">
+            Academic Foundation
+          </h3>
+
+        </div>
+
+      </div>
+
+
+      {/* EDUCATION GRID */}
+      <div className="grid gap-5 md:grid-cols-2">
+
+        {/* MCA */}
+        <div className="education-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl">
+
+          <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-purple-500/10 blur-3xl transition-all duration-700 group-hover:scale-150 group-hover:bg-purple-500/20" />
+
+          <div className="relative">
+
+            <div className="flex items-start justify-between gap-4">
+
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-400/20 bg-purple-500/10 text-2xl">
+                🎓
               </div>
 
-              <p className="text-sm leading-7 text-zinc-400">
-                Collaborated with Product, Engineering and Finance teams
-                in an Agile environment to gather requirements and
-                deliver analytical outputs.
-              </p>
+              <span className="rounded-full border border-purple-400/20 bg-purple-500/10 px-3 py-1.5 text-[10px] font-medium text-purple-300">
+                9.2 / 10
+              </span>
+
+            </div>
+
+            <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-purple-300">
+              Master&apos;s Degree
+            </p>
+
+            <h3 className="mt-2 text-2xl font-semibold text-white">
+              Master of Computer Applications
+            </h3>
+
+            <p className="mt-3 text-sm font-medium text-zinc-400">
+              AMC Engineering College
+            </p>
+
+            <p className="mt-1 text-xs text-zinc-600">
+              Bengaluru
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-2">
+
+              <span className="education-tag">
+                Artificial Intelligence
+              </span>
+
+              <span className="education-tag">
+                Machine Learning
+              </span>
+
+              <span className="education-tag">
+                Data Analysis
+              </span>
+
+              <span className="education-tag">
+                Statistics
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* BCA */}
+        <div className="education-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl">
+
+          <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl transition-all duration-700 group-hover:scale-150 group-hover:bg-blue-500/20" />
+
+          <div className="relative">
+
+            <div className="flex items-start justify-between gap-4">
+
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-2xl">
+                💻
+              </div>
+
+              <span className="rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1.5 text-[10px] font-medium text-blue-300">
+                8.11 / 10
+              </span>
+
+            </div>
+
+            <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-blue-300">
+              Bachelor&apos;s Degree
+            </p>
+
+            <h3 className="mt-2 text-2xl font-semibold text-white">
+              Bachelor of Computer Applications
+            </h3>
+
+            <p className="mt-3 text-sm font-medium text-zinc-400">
+              Govt. First Grade College
+            </p>
+
+            <p className="mt-1 text-xs text-zinc-600">
+              Honavar
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-2">
+
+              <span className="education-tag">
+                Computer Applications
+              </span>
+
+              <span className="education-tag">
+                Programming
+              </span>
+
+              <span className="education-tag">
+                Data
+              </span>
 
             </div>
 
@@ -1707,329 +2078,10 @@ export default function Home() {
         </div>
 
       </div>
-    </div>
 
-  </div>
+    </section>
 
-{/* ================= PYTHON DEVELOPER ================= */}
-{/* ================= PYTHON DEVELOPER ================= */}
-<div className="experience-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl sm:p-9">
-
-  {/* Glow */}
-  <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl transition-all duration-700 group-hover:bg-purple-500/20" />
-
-  <div className="relative grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
-
-    {/* LEFT */}
-    <div>
-
-      {/* Icon + Date */}
-      <div className="mb-5 flex items-center gap-3">
-
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/20 bg-purple-500/10 text-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-          🐍
-        </div>
-
-        <span className="rounded-full border border-purple-400/20 bg-purple-500/10 px-3 py-1.5 text-[10px] font-medium tracking-wider text-purple-300 uppercase">
-          Mar 2026 — Present
-        </span>
-
-      </div>
-
-
-      {/* Role */}
-      <h3 className="text-2xl font-semibold text-white sm:text-3xl">
-        Python Developer
-      </h3>
-
-
-      {/* Company */}
-      <p className="mt-2 text-sm font-medium text-purple-300">
-        Sai Krishna Enterprises
-      </p>
-
-
-      {/* Location */}
-      <p className="mt-1 text-xs text-zinc-600">
-        Hubballi, India
-      </p>
-
-
-      {/* EXPERIENCE SKILLS */}
-      <div className="mt-8 grid grid-cols-3 gap-3">
-
-        {/* PYTHON */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30 hover:bg-yellow-500/[0.05]">
-
-          <div className="text-lg font-semibold text-yellow-300">
-            Py
-          </div>
-
-          <p className="mt-1 text-[10px] text-zinc-500">
-            Python
-          </p>
-
-        </div>
-
-
-        {/* API */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.05]">
-
-          <div className="text-lg font-semibold text-blue-300">
-            API
-          </div>
-
-          <p className="mt-1 text-[10px] text-zinc-500">
-            Integration
-          </p>
-
-        </div>
-
-
-        {/* OOP */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:bg-purple-500/[0.05]">
-
-          <div className="text-lg font-semibold text-purple-300">
-            OOP
-          </div>
-
-          <p className="mt-1 text-[10px] text-zinc-500">
-            Development
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    {/* RIGHT — RESPONSIBILITIES */}
-    <div className="lg:border-l lg:border-white/10 lg:pl-10">
-
-      <p className="mb-6 text-xs font-medium tracking-[0.2em] text-zinc-600 uppercase">
-        Key Contributions
-      </p>
-
-
-      <div className="space-y-5">
-
-        {/* ITEM 1 */}
-        <div className="flex gap-4">
-
-          <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-purple-400/20 bg-purple-500/10 text-xs text-purple-300">
-            ✓
-          </div>
-
-          <p className="text-sm leading-7 text-zinc-400">
-            Developed Python-based applications and automation workflows
-            using clean, modular and reusable programming practices.
-          </p>
-
-        </div>
-
-
-        {/* ITEM 2 */}
-        <div className="flex gap-4">
-
-          <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-blue-400/20 bg-blue-500/10 text-xs text-blue-300">
-            ✓
-          </div>
-
-          <p className="text-sm leading-7 text-zinc-400">
-            Worked on data processing, debugging and problem-solving tasks
-            to support reliable software development workflows.
-          </p>
-
-        </div>
-
-
-        {/* ITEM 3 */}
-        <div className="flex gap-4">
-
-          <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-fuchsia-400/20 bg-fuchsia-500/10 text-xs text-fuchsia-300">
-            ✓
-          </div>
-
-          <p className="text-sm leading-7 text-zinc-400">
-            Applied Python programming and software engineering practices
-            to build maintainable and reusable solutions.
-          </p>
-
-        </div>
-
-
-        {/* ITEM 4 */}
-        <div className="flex gap-4">
-
-          <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-500/10 text-xs text-emerald-300">
-            ✓
-          </div>
-
-          <p className="text-sm leading-7 text-zinc-400">
-            Contributed to improving existing workflows through automation,
-            testing and structured Python development.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-  {/* ================= EDUCATION ================= */}
-  <div>
-
-    <div className="mb-8 flex items-center gap-3">
-
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/10 text-lg">
-        🎓
-      </div>
-
-      <div>
-        <p className="text-xs tracking-[0.2em] text-blue-300 uppercase">
-          Education
-        </p>
-
-        <h3 className="mt-1 text-xl font-semibold text-white">
-          Academic Foundation
-        </h3>
-      </div>
-
-    </div>
-
-
-    {/* EDUCATION GRID */}
-    <div className="grid gap-5 md:grid-cols-2">
-
-
-      {/* MCA */}
-      <div className="education-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl">
-
-        <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-purple-500/10 blur-3xl transition-all duration-700 group-hover:scale-150 group-hover:bg-purple-500/20" />
-
-        <div className="relative">
-
-          <div className="flex items-start justify-between gap-4">
-
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-400/20 bg-purple-500/10 text-2xl transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3">
-              🎓
-            </div>
-
-            <span className="rounded-full border border-purple-400/20 bg-purple-500/10 px-3 py-1.5 text-[10px] font-medium text-purple-300">
-              9.2 / 10
-            </span>
-
-          </div>
-
-
-          <p className="mt-7 text-xs font-medium tracking-[0.2em] text-purple-300 uppercase">
-            Master's Degree
-          </p>
-
-          <h3 className="mt-2 text-2xl font-semibold text-white">
-            Master of Computer Applications
-          </h3>
-
-          <p className="mt-3 text-sm font-medium text-zinc-400">
-            AMC Engineering College
-          </p>
-
-          <p className="mt-1 text-xs text-zinc-600">
-            Bengaluru
-          </p>
-
-
-          <div className="mt-7 flex flex-wrap gap-2">
-
-            <span className="education-tag">
-              Artificial Intelligence
-            </span>
-
-            <span className="education-tag">
-              Machine Learning
-            </span>
-
-            <span className="education-tag">
-              Data Analysis
-            </span>
-
-            <span className="education-tag">
-              Statistics
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* BCA */}
-      <div className="education-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl">
-
-        <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl transition-all duration-700 group-hover:scale-150 group-hover:bg-blue-500/20" />
-
-        <div className="relative">
-
-          <div className="flex items-start justify-between gap-4">
-
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-              💻
-            </div>
-
-            <span className="rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1.5 text-[10px] font-medium text-blue-300">
-              8.11 / 10
-            </span>
-
-          </div>
-
-
-          <p className="mt-7 text-xs font-medium tracking-[0.2em] text-blue-300 uppercase">
-            Bachelor's Degree
-          </p>
-
-          <h3 className="mt-2 text-2xl font-semibold text-white">
-            Bachelor of Computer Applications
-          </h3>
-
-          <p className="mt-3 text-sm font-medium text-zinc-400">
-            Govt. First Grade College
-          </p>
-
-          <p className="mt-1 text-xs text-zinc-600">
-            Honavar
-          </p>
-
-
-          <div className="mt-7 flex flex-wrap gap-2">
-
-            <span className="education-tag">
-              Computer Applications
-            </span>
-
-            <span className="education-tag">
-              Programming
-            </span>
-
-            <span className="education-tag">
-              Data
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+  </section>
 {/* ================= CERTIFICATIONS ================= */}
 <section
   id="certifications"
