@@ -4,7 +4,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-    const [theme, setTheme] = useState<"system" | "light" | "dark">("system");
+  const [theme, setTheme] = useState("dark");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // rest of your existing code...
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as
@@ -92,18 +95,17 @@ export default function Home() {
         />
       </div>
 
-      {/* ================= NAVIGATION ================= */}
-      {/* ================= NAVBAR ================= */}
+ {/* ================= NAVIGATION ================= */}
+{/* ================= NAVBAR ================= */}
 <nav className="fixed left-1/2 top-5 z-50 w-[calc(100%-2rem)] max-w-6xl -translate-x-1/2">
-
-  <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/60 px-5 py-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
+  <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/60 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur-xl sm:px-5">
 
     {/* LOGO */}
     <a
       href="#home"
       className="group flex items-center gap-3"
+      onClick={() => setMobileMenuOpen(false)}
     >
-
       <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-purple-400/20 bg-purple-500/10 text-xs font-semibold text-purple-300 transition-all duration-300 group-hover:scale-105 group-hover:border-purple-400/40">
         SN
       </div>
@@ -117,13 +119,10 @@ export default function Home() {
           SOFTWARE ENGINEER
         </p>
       </div>
-
     </a>
-
 
     {/* DESKTOP NAVIGATION */}
     <div className="hidden items-center gap-7 md:flex">
-
       <a
         href="#home"
         className="text-xs text-zinc-400 transition-colors duration-300 hover:text-white"
@@ -158,13 +157,10 @@ export default function Home() {
       >
         Experience
       </a>
-
     </div>
 
-
-    {/* THEME SWITCHER */}
+    {/* DESKTOP THEME SWITCHER */}
     <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1 backdrop-blur-xl md:flex">
-
       <button
         type="button"
         onClick={() => changeTheme("light")}
@@ -206,47 +202,204 @@ export default function Home() {
       >
         ☾
       </button>
-
     </div>
 
+    {/* DESKTOP CTA BUTTONS */}
+    <div className="hidden items-center gap-3 md:flex">
+      {/* CTA */}
+      <a
+        href="#contact"
+        className="group inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-purple-500/10"
+      >
+        Let&apos;s Talk
 
-    {/* CTA */}
-    <a
-      href="#contact"
-      className="group inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-purple-500/10"
+        <span className="transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </a>
+
+      {/* VIEW RESUME */}
+      <a
+        href="/Sahana_AI.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex items-center justify-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-6 py-3 text-sm font-medium text-purple-200 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/40 hover:bg-purple-500/15 hover:shadow-lg hover:shadow-purple-500/10"
+      >
+        View Resume
+
+        <span className="transition-transform duration-300 group-hover:translate-y-[-2px]">
+          ↗
+        </span>
+      </a>
+
+      {/* DOWNLOAD RESUME */}
+      <a
+        href="/Sahana_AI.pdf"
+        download
+        className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:text-purple-300"
+      >
+        Download Resume
+
+        <span className="transition-transform duration-300 group-hover:translate-y-1">
+          ↓
+        </span>
+      </a>
+    </div>
+
+    {/* MOBILE MENU BUTTON */}
+    <button
+      type="button"
+      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+      aria-expanded={mobileMenuOpen}
+      className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-lg text-zinc-300 transition-all duration-300 hover:border-purple-400/30 hover:bg-purple-500/10 hover:text-white md:hidden"
     >
-      Let&apos;s Talk
-
-      <span className="transition-transform duration-300 group-hover:translate-x-1">
-        →
-      </span>
-    </a>
-
-   <a
-  href="/Sahana_AI.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="group inline-flex items-center justify-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-6 py-3 text-sm font-medium text-purple-200 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/40 hover:bg-purple-500/15 hover:shadow-lg hover:shadow-purple-500/10"
->
-  View Resume
-  <span className="transition-transform duration-300 group-hover:translate-y-[-2px]">
-    ↗
-  </span>
-</a>
-
-<a
-  href="/Sahana_AI.pdf"
-  download
-  className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:text-purple-300"
->
-  Download Resume
-  <span className="transition-transform duration-300 group-hover:translate-y-1">
-    ↓
-  </span>
-</a>
-
+      {mobileMenuOpen ? "✕" : "☰"}
+    </button>
   </div>
 
+  {/* MOBILE MENU */}
+  {mobileMenuOpen && (
+    <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-black/90 p-4 shadow-2xl shadow-black/30 backdrop-blur-xl md:hidden">
+      
+      {/* MOBILE NAVIGATION */}
+      <div className="flex flex-col gap-1">
+        <a
+          href="#home"
+          onClick={() => setMobileMenuOpen(false)}
+          className="rounded-xl px-4 py-3 text-sm text-zinc-300 transition-all duration-300 hover:bg-purple-500/10 hover:text-purple-300"
+        >
+          Home
+        </a>
+
+        <a
+          href="#about"
+          onClick={() => setMobileMenuOpen(false)}
+          className="rounded-xl px-4 py-3 text-sm text-zinc-300 transition-all duration-300 hover:bg-purple-500/10 hover:text-purple-300"
+        >
+          About
+        </a>
+
+        <a
+          href="#skills"
+          onClick={() => setMobileMenuOpen(false)}
+          className="rounded-xl px-4 py-3 text-sm text-zinc-300 transition-all duration-300 hover:bg-purple-500/10 hover:text-purple-300"
+        >
+          Skills
+        </a>
+
+        <a
+          href="#projects"
+          onClick={() => setMobileMenuOpen(false)}
+          className="rounded-xl px-4 py-3 text-sm text-zinc-300 transition-all duration-300 hover:bg-purple-500/10 hover:text-purple-300"
+        >
+          Projects
+        </a>
+
+        <a
+          href="#experience"
+          onClick={() => setMobileMenuOpen(false)}
+          className="rounded-xl px-4 py-3 text-sm text-zinc-300 transition-all duration-300 hover:bg-purple-500/10 hover:text-purple-300"
+        >
+          Experience
+        </a>
+
+        <a
+          href="#education"
+          onClick={() => setMobileMenuOpen(false)}
+          className="rounded-xl px-4 py-3 text-sm text-zinc-300 transition-all duration-300 hover:bg-purple-500/10 hover:text-purple-300"
+        >
+          Education
+        </a>
+
+        <a
+          href="#contact"
+          onClick={() => setMobileMenuOpen(false)}
+          className="rounded-xl px-4 py-3 text-sm text-zinc-300 transition-all duration-300 hover:bg-purple-500/10 hover:text-purple-300"
+        >
+          Contact
+        </a>
+      </div>
+
+      {/* MOBILE THEME SWITCHER */}
+      <div className="mt-4 border-t border-white/10 pt-4">
+        <p className="mb-3 px-4 text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+          Theme
+        </p>
+
+        <div className="flex gap-2 px-4">
+          <button
+            type="button"
+            onClick={() => changeTheme("light")}
+            className={`flex-1 rounded-xl border px-3 py-2 text-sm transition-all duration-300 ${
+              theme === "light"
+                ? "border-purple-400/30 bg-purple-500/10 text-purple-200"
+                : "border-white/10 bg-white/[0.03] text-zinc-400"
+            }`}
+          >
+            ☀ Light
+          </button>
+
+          <button
+            type="button"
+            onClick={() => changeTheme("system")}
+            className={`flex-1 rounded-xl border px-3 py-2 text-sm transition-all duration-300 ${
+              theme === "system"
+                ? "border-purple-400/30 bg-purple-500/10 text-purple-200"
+                : "border-white/10 bg-white/[0.03] text-zinc-400"
+            }`}
+          >
+            ◐ System
+          </button>
+
+          <button
+            type="button"
+            onClick={() => changeTheme("dark")}
+            className={`flex-1 rounded-xl border px-3 py-2 text-sm transition-all duration-300 ${
+              theme === "dark"
+                ? "border-purple-400/30 bg-purple-500/10 text-purple-200"
+                : "border-white/10 bg-white/[0.03] text-zinc-400"
+            }`}
+          >
+            ☾ Dark
+          </button>
+        </div>
+      </div>
+
+      {/* MOBILE ACTIONS */}
+      <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4">
+        <a
+          href="#contact"
+          onClick={() => setMobileMenuOpen(false)}
+          className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-medium text-black transition-all duration-300 hover:bg-zinc-200"
+        >
+          Let&apos;s Talk
+          <span>→</span>
+        </a>
+
+        <a
+          href="/Sahana_AI.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setMobileMenuOpen(false)}
+          className="flex items-center justify-center gap-2 rounded-xl border border-purple-400/20 bg-purple-500/10 px-4 py-3 text-sm font-medium text-purple-200 transition-all duration-300 hover:border-purple-400/40 hover:bg-purple-500/15"
+        >
+          View Resume
+          <span>↗</span>
+        </a>
+
+        <a
+          href="/Sahana_AI.pdf"
+          download
+          onClick={() => setMobileMenuOpen(false)}
+          className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:border-purple-400/30 hover:text-purple-300"
+        >
+          Download Resume
+          <span>↓</span>
+        </a>
+      </div>
+    </div>
+  )}
 </nav>
 
       {/* ================= HERO ================= */}
