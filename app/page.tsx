@@ -188,7 +188,7 @@ export default function Home() {
 
             {/* DOWNLOAD RESUME */}
             <a
-              href="/Sahana_AI.pdf"
+              href="/Sahana_Resume.pdf"
               download
               className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:text-purple-300"
             >
@@ -318,7 +318,7 @@ export default function Home() {
               </a>
 
               <a
-                href="/Sahana_AI.pdf"
+                href="/Sahana_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
@@ -329,7 +329,7 @@ export default function Home() {
               </a>
 
               <a
-                href="/Sahana_AI.pdf"
+                href="/Sahana_Resume.pdf"
                 download
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:border-purple-400/30 hover:text-purple-300"
